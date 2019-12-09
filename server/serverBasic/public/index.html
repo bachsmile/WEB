@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SOCKET DEMO</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <style type="text/css">
+    	form {position: fixed; bottom: 10px; width: 60%; }
+    	form input { border: 2px solid; padding: 10px; width: 90%; margin-right: .5% }
+    	#content { list-style-type: none; margin: 0; padding: 0; width: 80%;}
+    	#content li { padding: 5px 10px; }
+    	#content li:nth-child(odd) { background: #eee; }
+    </style>
+
+</head>
+<body>
+	<div class="container">
+		<ul id="content">
+			
+		</ul>
+		<form>
+			<input type="text" name="message" id="message" />
+			<button id="btn_send" class="btn btn-success">Send</button>
+		</form>
+	</div>
+
+	<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+	<script type="text/javascript">
+		const socket = io.connect("http://localhost:3000");
+		socket.on('connect', () => {
+			console.log('User is connecting to server');
+
+			const username = prompt('What is  your name?');
+			socket.emit('adduser', username);
+		});
+
+
+		socket.on('update_message', (data) => {
+			$('#content').append('<li> <b>' + data.sender + ': </b>' + data.message + '</li>');
+		});
+
+		$('#btn_send').click((e) => {
+			const message = $('#message').val();
+			$('#message').val('');
+
+			if(message.trim().length != 0){
+				socket.emit('send_message', message);
+			}
+		});
+		$('form').submit(() => {
+			return false;
+		});
+
+	</script>
+</body>
+</html>

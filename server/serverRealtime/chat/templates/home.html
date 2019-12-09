@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Nguyễn Thế Anh - 15TCLC1 - GVHD: Nguyễn Văn Nguyên</title>
+    <link rel="stylesheet" type="text/css" href="./views/bootstrap.min.css">
+    <script type="text/javascript" src="./views/jquery-3.3.1.min.js"></script>
+    <link href="./views/select2.min.css" rel="stylesheet" />
+    <script src="./views/select2.min.js"></script>
+    <link href="./views/thongbao/swal.css" rel="stylesheet" />
+    <script src="./views/thongbao/swal.js"></script>
+    <link href="./views/chat_box/chat.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="./views/reset.css">
+    <link href="./views/lol.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="contactnow">
+        <div class="rotate"></div>
+        <div class="innercontactnow"> <a id="online" style="margin-top: -5px;color: #f30808;font-size: 12px;">Tư vấn online</a> </div>
+    </div>
+    <div class="top">
+        <h1>Chương trình tư vấn tuyển sinh đại học, cao đẳng</h1>
+        <h2>Nguyễn Thế Anh - 15TCLC1<br>GVHD: Nguyễn Văn Nguyên</h1>
+    </div>
+    <div class="login">
+        <div class="header">
+            <h3>Danh sách các trường công bố điểm chuẩn</h3>
+        </div>
+        <div class="body">
+            <div style="color: #0e0e0e;">
+                <div style="margin-bottom:60px;">
+                    <select id="truong_id" class="js-example-basic-single" name="state" class="form-control" style="width:40%;float:left;border-radius: 0px;">
+                        <option value="0">Tất cả các trường</option>
+                        <option value="1">Truong DHBK DN</option>
+                    </select>
+                    <script>
+                    </script>
+                    <select id="nam" class="form-control" style="width:30%;float:left;border-radius: 0px;">
+                        <option value="0">Toàn bộ năm</option>
+                        <option value="2018">Năm 2018</option>
+                    </select>
+                    <div class="form-group" style="width:30%;float:left;border-radius: 0px;">
+                        <form action="javascript:void(0)">
+                            <input id="search" type="text" value="" class="form-control" placeholder="Tim: Điểm chuẩn, Mã trường, Khối,..." style="border-radius: 0px;">
+                        </form>
+                    </div>
+                    <script>
+                    $(document).ready(function() {
+                        $('.js-example-basic-single').select2();
+                    });
+                    </script>
+                </div>
+                <style>
+                    tr{
+                    background-color:#d4c9c9;
+                  }
+                </style>
+                <table class="table table-striped table-bordered table-hover" id="example" style="width: 100%;">
+                    <thead>
+                        <tr style="background-color:wheat;">
+                            <th>STT</th>
+                            <th>Tên trường</th>
+                            <th>Mã trường</th>
+                            <th>Ngành</th>
+                            <th>Mã ngành</th>
+                            <th>Khối</th>
+                            <th>Năm</th>
+                            <th>Điểm chuẩn</th>
+                            <th>Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody class="list1" id="list1"> </tbody>
+                </table>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end" id="paginate">
+                        <li class="page-item"><a class="page-link">1</a>
+                        </li>
+                        <li class="page-item"><a class="page-link">2</a>
+                        </li>
+                        <li class="page-item"><a class="page-link">3</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="boxed-container">
+        <div class="chat_box">
+            <div class="chat_head">Tư vấn</div>
+            <div id="people" class="chat_body" style="display:none;">
+                <div class="user">Admin</div>
+                <div class="user">Theanh</div>
+            </div>
+        </div>
+        <div id="chat_box" class="msg_box" style="right:290px;display:none;">
+            <div id="user" class="msg_head"> Krishna Teja
+                <div class="close">x</div>
+            </div>
+            <button onclick="thoat()" id="close" class="close">x</button>
+            <div id="content" class="msg_wrap">
+                <div class="msg_body"> </div>
+                <div class="msg_footer">
+                    <form action="javascript:void(0)">
+                        <input id="msg" type="text" value="" autocomplete="off" class="msg_input" placeholder="Nhập tin nhắn...">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $('.chat_head').click(function() {
+                $('.chat_body').slideToggle('slow');
+            });
+            $('.msg_head').click(function() {
+                $('.msg_wrap').slideToggle('slow');
+            });
+        });
+        </script>
+        <script type="text/javascript" src="./views/socket/client.js"></script>
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Nguyễn Thế Anh - 15TCLC1 - GVHD: Nguyễn Văn Nguyên</title>
+    <link rel="stylesheet" type="text/css" href="./views/bootstrap.min.css">
+    <script type="text/javascript" src="./views/jquery-3.3.1.min.js"></script>
+    <link href="./views/select2.min.css" rel="stylesheet" />
+    <script src="./views/select2.min.js"></script>
+    <link href="./views/thongbao/swal.css" rel="stylesheet" />
+    <script src="./views/thongbao/swal.js"></script>
+    <link href="./views/chat_box/chat.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="./views/reset.css">
+    <link href="./views/lol.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="contactnow">
+        <div class="rotate"></div>
+        <div class="innercontactnow"> <a id="online" style="margin-top: -5px;color: #f30808;font-size: 12px;">Tư vấn online</a> </div>
+    </div>
+    <div class="top">
+        <h1>Chương trình tư vấn tuyển sinh đại học, cao đẳng</h1>
+        <h2>Nguyễn Thế Anh - 15TCLC1<br>GVHD: Nguyễn Văn Nguyên</h1>
+    </div>
+    <div class="login">
+        <div class="header">
+            <h3>Danh sách các trường</h3>
+        </div>
+        <div class="body">
+            <div style="color: #0e0e0e;">
+                <div style="margin-bottom:60px;">
+                    <div class="form-group" style="width:30%;float: left;;border-radius: 0px;">
+                        <button onclick="them_truong()" class="btn btn-success">Thêm</button>
+                    </div>
+                    <div class="form-group" style="width:30%;float: right;border-radius: 0px;">
+                        <form id="form_search_truong" action="javascript:void(0)">
+                            <input id="search_truong" type="text" value="" class="form-control" placeholder="Tim: Điểm chuẩn, Mã trường, Khối,..." style="border-radius: 0px;">
+                        </form>
+                    </div>
+                </div>
+                <style>
+                    tr{
+                    background-color:#d4c9c9;
+                  }
+                </style>
+                <table class="table table-striped table-bordered table-hover" id="example" style="width: 100%;">
+                    <thead>
+                        <tr style="background-color:wheat;">
+                            <th>STT</th>
+                            <th>Tên trường</th>
+                            <th>Mã trường</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody class="list_truong" id="list_truong"> 
+
+                    </tbody>
+                </table>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end" id="paginate_truong">
+                        <li class="page-item"><a class="page-link">1</a>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="login">
+        <div class="header">
+            <h3>Danh sách các ngành</h3>
+        </div>
+        <div class="body">
+            <div style="color: #0e0e0e;">
+                <div style="margin-bottom:60px;">
+                    <div class="form-group" style="width:30%;float: left;;border-radius: 0px;">
+                        <button onclick="them_nganh()" class="btn btn-success">Thêm</button>
+                    </div>
+                    <select id="nganh_truong_id" class="js-example-basic-single" name="state" class="form-control" style="width:40%;float:left;border-radius: 0px;">
+                            <option value="0">Tất cả các trường</option>
+                            <option value="1">Truong DHBK DN</option>
+                    </select>
+                    <div class="form-group" style="width:30%;float: right;border-radius: 0px;">
+                        <form id="form_search_nganh" action="javascript:void(0)">
+                            <input id="search_nganh" type="text" value="" class="form-control" placeholder="Tim: Điểm chuẩn, Mã trường, Khối,..." style="border-radius: 0px;">
+                        </form>
+                    </div>
+                    <script>
+                        $(document).ready(function() {
+                            $("#nganh_truong_id").select2();
+                        });
+                    </script>
+                </div>
+                <style>
+                    tr{
+                    background-color:#d4c9c9;
+                  }
+                </style>
+                <table class="table table-striped table-bordered table-hover" id="example" style="width: 100%;">
+                    <thead>
+                        <tr style="background-color:wheat;">
+                            <th>STT</th>
+                            <th>Tên trường</th>
+                            <th>Mã trường</th>
+                            <th>Tên ngành</th>
+                            <th>Mã ngành</th>
+                            <th>Khối</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody class="list_nganh" id="list_nganh">
+
+                    </tbody>
+                </table>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end" id="paginate_nganh">
+                        <li class="page-item"><a class="page-link">1</a>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="login" style="margin-bottom: 202px;">
+        <div class="header">
+            <h3>Danh sách điểm chuẩn</h3>
+        </div>
+        <div class="body">
+            <div style="color: #0e0e0e;">
+                <div style="margin-bottom:60px;">
+                    <div class="form-group" style="width:10%;float: left;;border-radius: 0px;">
+                        <button onclick="them_diem()" class="btn btn-success">Thêm</button>
+                    </div>
+                    <select id="truong_id" class="js-example-basic-single" name="state" class="form-control" style="width:30%;float:left;border-radius: 0px;">
+                        <option value="0">Tất cả các trường</option>
+                        <option value="1">Truong DHBK DN</option>
+                    </select>
+                    <script>
+                    </script>
+                    <select id="nam" class="form-control" style="width:30%;float:left;border-radius: 0px;">
+                        <option value="0">Toàn bộ năm</option>
+                        <option value="2018">Năm 2018</option>
+                    </select>
+                    <div class="form-group" style="width:30%;float:left;border-radius: 0px;">
+                        <form action="javascript:void(0)">
+                            <input id="search" type="text" value="" class="form-control" placeholder="Tim: Điểm chuẩn, Mã trường, Khối,..." style="border-radius: 0px;">
+                        </form>
+                    </div>
+                    <script>
+                    $(document).ready(function() {
+                        $('.js-example-basic-single').select2();
+                    });
+                    </script>
+                </div>
+                <style>
+                    tr{
+                    background-color:#d4c9c9;
+                    }
+                </style>
+                <table class="table table-striped table-bordered table-hover" id="example" style="width: 100%;">
+                    <thead>
+                        <tr style="background-color:wheat;">
+                            <th>STT</th>
+                            <th>Tên trường</th>
+                            <th>Mã trường</th>
+                            <th>Ngành</th>
+                            <th>Mã ngành</th>
+                            <th>Khối</th>
+                            <th>Năm</th>
+                            <th>Điểm chuẩn</th>
+                            <th>Ghi chú</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody class="list1" id="list1"> </tbody>
+                </table>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end" id="paginate">
+                        <li class="page-item"><a class="page-link">1</a>
+                        </li>
+                        <li class="page-item"><a class="page-link">2</a>
+                        </li>
+                        <li class="page-item"><a class="page-link">3</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div id="truong" class="login">
+        <div class="body">
+            <div style="color: #0e0e0e;">
+                <div style="margin-bottom:60px;">
+                    <div class="form-group" style="width:12%;float:left;border-radius: 0px;">
+                        <h3 class="form-control" id="truong_title">Thêm trường</h3>
+                    </div>
+                    <div class="form-group" style="width:35%;float:left;border-radius: 0px;">
+                        <input id="tentruong" type="text" value="" class="form-control" placeholder="Nhập tên trường..." style="border-radius: 0px;">
+                    </div>
+                    <div class="form-group" style="width:35%;float:left;border-radius: 0px;">
+                        <input id="matruong" type="text" value="" class="form-control" placeholder="Nhập mã trường..." style="border-radius: 0px;">
+                    </div>
+                    <div id="truong_action" class="form-group" style="width:13%;float:left;border-radius: 0px;">
+                        <button class="btn btn-success">Thực hiện</button>
+                        <button onclick="truong_form_thoat()" class="btn btn-danger">x</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="nganh" class="login">
+        <div class="body">
+            <div style="color: #0e0e0e;">
+                <div style="margin-bottom:60px;">
+                    <div class="form-group" style="width:105px;float:left;border-radius: 0px;">
+                        <h3 class="form-control" id="nganh_title">Thêm ngành</h3>
+                    </div>
+                    <select id="option_truong" class="js-example-basic-single" name="state" class="form-control" style="width:20%;float:left;border-radius: 0px;">
+                            <option value="0">Tất cả các trường</option>
+                            <option value="1">Truong DHBK DN</option>
+                    </select>
+                    <div class="form-group" style="width:20%;float:left;border-radius: 0px;">
+                        <input id="tennganh" type="text" value="" class="form-control" placeholder="Nhập tên ngành..." style="border-radius: 0px;">
+                    </div>
+                    <div class="form-group" style="width:20%;float:left;border-radius: 0px;">
+                        <input id="manganh" type="text" value="" class="form-control" placeholder="Nhập mã ngành..." style="border-radius: 0px;">
+                    </div>
+                    <div class="form-group" style="width:20%;float:left;border-radius: 0px;">
+                        <input id="khoi" type="text" value="" class="form-control" placeholder="Nhập khối..." style="border-radius: 0px;">
+                    </div>
+                    <div id="nganh_action" class="form-group" style="width:10%;float:left;border-radius: 0px;">
+                        <button onclick="post_add_nganh()" class="btn btn-success">Thực hiện</button>
+                    </div>
+                    <button onclick="nganh_form_thoat()" class="btn btn-danger" style="position: absolute;">x</button>
+                    <script>
+                        $(document).ready(function() {
+                            $("#option_truong").select2();
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="diem" class="login">
+        <div class="body">
+            <div style="color: #0e0e0e;">
+                <div style="margin-bottom:60px;">
+                    <h3 class="form-control" id="diem_title">Thêm </h3>
+                    <select id="option_truong_diem" class="js-example-basic-single" name="state" class="form-control" style="width:20%;float:left;border-radius: 0px;">
+                            <option value="0">Tất cả các trường</option>
+                            <option value="1">Truong DHBK DN</option>
+                    </select>
+                    <select id="option_nganh_diem" class="js-example-basic-single" name="state" class="form-control" style="width:20%;float:left;border-radius: 0px;">
+                            <option value="0">Chọn ngành</option>
+                    </select>
+                    <select id="diem_nam" class="form-control" style="width:11%;float:left;border-radius: 0px;">
+                        <option value="0">Chọn năm</option>
+                    </select>
+                    <div class="form-group" style="width:15%;float:left;border-radius: 0px;">
+                        <input id="diem_diemchuan" type="number" min=0 value="" class="form-control" placeholder="Nhập điểm chuẩn..." style="border-radius: 0px;">
+                    </div>
+                    <div class="form-group" style="width:23%;float:left;border-radius: 0px;">
+                        <input id="diem_ghichu" type="text" value="" class="form-control" placeholder="Nhập ghi chú..." style="border-radius: 0px;">
+                    </div>
+                    <div id="diem_action" class="form-group" style="width:10%;float:left;border-radius: 0px;">
+                        <button onclick="post_add_diem()" class="btn btn-success">Thực hiện</button>
+                    </div>
+                    <button onclick="diem_form_thoat()" class="btn btn-danger" style="position: absolute;">x</button>
+                    <script>
+                        $(document).ready(function() {
+                            $("#option_truong_diem").select2();
+                            $("#option_nganh_diem").select2();
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="boxed-container">
+        <div class="chat_box">
+            <div class="chat_head">Tư vấn</div>
+            <div id="people" class="chat_body" style="display:none;">
+                <div class="user">Admin</div>
+                <div class="user">Theanh</div>
+            </div>
+        </div>
+        <div id="chat_box" class="msg_box" style="right:290px;display:none;">
+            <div id="user" class="msg_head"> Krishna Teja
+                <div class="close">x</div>
+            </div>
+            <button onclick="thoat()" id="close" class="close">x</button>
+            <div id="content" class="msg_wrap">
+                <div class="msg_body"> </div>
+                <div class="msg_footer">
+                    <form id="form_msg" action="javascript:void(0)">
+                        <input id="msg" type="text" value="" autocomplete="off" class="msg_input" placeholder="Nhập tin nhắn...">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $('.chat_head').click(function() {
+                $('.chat_body').slideToggle('slow');
+            });
+            $('.msg_head').click(function() {
+                $('.msg_wrap').slideToggle('slow');
+            });
+        });
+        </script>
+        <script type="text/javascript" src="./views/socket/ws_truong.js"></script>
+        <script type="text/javascript" src="./views/socket/ws_nganh.js"></script>
+        <script type="text/javascript" src="./views/socket/admin.js"></script>
+        <script type="text/javascript" src="./views/socket/session.js"></script>
+</body>
+</html>
